@@ -97,12 +97,15 @@ namespace _1_лаба
                 AddToHashtable(City, Branches);
             }
             int flag = 2;
-            while(flag != 1 || flag == 0)
+            if(listStaff.Count >= 1000)
             {
-                Console.Write("Хотите сделать запрос по 1000 случайным работникам? (Yes:No):");
-                string chooise = Console.ReadLine();
-                if (chooise.ToLower() == "yes") flag = 1;
-                else if (chooise.ToLower() == "no") flag = 0;
+                while (true)
+                {
+                    Console.Write("Хотите сделать запрос по 1000 случайным работникам? (Yes:No):");
+                    string choise = Console.ReadLine();
+                    if (choise.ToLower() == "yes") { flag = 1; break; }
+                    else if (choise.ToLower() == "no") { flag = 0; break; }
+                }
             }
             if(flag == 1)
             {
@@ -134,9 +137,23 @@ namespace _1_лаба
             while(true)
             {
                 Console.Write("Введите запрос\n--> ");
-                foreach(var item in getValueByKey(Console.ReadLine()))
+                string firstRequest = Console.ReadLine();
+                foreach (var item in getValueByKey(firstRequest))
                 {
                     Console.WriteLine(item);
+                }
+                Console.WriteLine();
+                while(true)
+                {
+                    Console.WriteLine("Введите запрос на основе выданных результатов, если хотите сделать новый запрос введите <exit>:");
+                    string anotherRequest = Console.ReadLine();
+                    if (anotherRequest == "exit") break;
+                    firstRequest = $"{firstRequest} {anotherRequest}";
+                    foreach (var item in getValueByKey(firstRequest))
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine();
                 }
                 Console.WriteLine("\n");
             }
