@@ -114,8 +114,9 @@ namespace _1_лаба
                     Random rnd = new Random();
                     for (int i = 0; i < 1000; i++)
                     {
-                        writer.WriteLine(listStaff[rnd.Next(listStaff.Count)]);
-                        listStaff.Remove(listStaff[rnd.Next(listStaff.Count)]);
+                        int index = rnd.Next(listStaff.Count);
+                        writer.WriteLine(listStaff[index]);
+                        listStaff.Remove(listStaff[index]);
                     }
                     writer.Close();
                     using (StreamReader reader = new StreamReader("1000randomStaff.txt"))
